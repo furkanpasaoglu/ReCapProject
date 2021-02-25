@@ -63,13 +63,13 @@ namespace ConsoleUI
         {
             UserManager userManager = new UserManager(new EfUserDal());
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            customerManager.Add(new Customer { UserId = userManager.GetById(1).Data.Id, CompanyName = "Muboys Adi Ortaklığı" });
+            customerManager.Add(new Customer { UserId = userManager.GetById(1).Data.Id, CompanyName = "Deneme Adi Ortaklığı" });
         }
 
         private static void AddUserTest()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            userManager.Add(new User { FirstName = "Murat", LastName = "Altınpınar", Email = "email@email.com", Password = "1234" });
+            userManager.Add(new User { FirstName = "Furkan", LastName = "Paşaoğlu", Email = "email@email.com", Password = "1234" });
         }
 
         private static void CarDtoTest()
