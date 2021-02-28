@@ -13,3 +13,5 @@ Yazılım Geliştirici Yetiştirme Kampı (Engin Demiroğ) Ödev
 - *11.Hafta WebAPI Eklendi ve Kodları Yazıldı.*
 - *12.Hafta Autofac ve FluentValidation Kodları Yazıldı.*
 - *12.Hafta Artık projede AOP ve IoC yapıları kullanılıyor.*
+- *13.Hafta Veritabanına CarImages Tablosu Eklendi.*
+- *13.Hafta Projeye Dosya Yükleme (Upload File) Sistemi Yazıldı.*

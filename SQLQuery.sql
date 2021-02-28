@@ -43,3 +43,10 @@ CREATE TABLE Rentals(
     FOREIGN KEY (CarId) REFERENCES Cars(Id),
     FOREIGN KEY (CustomerId) REFERENCES Customers(UserId)
 );
+
+CREATE TABLE CarImages(
+    Id INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    CarId INT,
+    ImagePath NVARCHAR(MAX),
+    Date DATE,
+);
