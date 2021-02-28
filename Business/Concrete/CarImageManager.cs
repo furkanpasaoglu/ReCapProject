@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -43,6 +44,7 @@ namespace Business.Concrete
             });
         }
 
+        [SecuredOperation("CarImage.Add,admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(string extension,CarImage carImage)
         {

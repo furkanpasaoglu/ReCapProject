@@ -9,6 +9,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -21,6 +22,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [SecuredOperation("Car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car) 
         {
