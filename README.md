@@ -15,3 +15,5 @@ Yazılım Geliştirici Yetiştirme Kampı (Engin Demiroğ) Ödev
 - *12.Hafta Artık projede AOP ve IoC yapıları kullanılıyor.*
 - *13.Hafta Veritabanına CarImages Tablosu Eklendi.*
 - *13.Hafta Projeye Dosya Yükleme (Upload File) Sistemi Yazıldı.*
+- *14.Hafta Veritabanı Güncellendi.*
+- *14.Hafta JWT Entegrasyonu Yapıldı.*
