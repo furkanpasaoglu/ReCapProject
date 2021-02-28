@@ -24,7 +24,9 @@ CREATE TABLE Users(
     FirstName NVARCHAR (100) NOT NULL,
     LastName NVARCHAR (100) NOT NULL,
     Email NVARCHAR (100) UNIQUE NOT NULL,
-    [Password] NVARCHAR (100) NOT NULL,
+    PasswordSalt BINARY(128) NOT NULL,
+    PasswordHash BINARY(128) NOT NULL,
+    Status BIT NOT NULL
 );
 
 CREATE TABLE Customers(
@@ -49,4 +51,13 @@ CREATE TABLE CarImages(
     CarId INT,
     ImagePath NVARCHAR(MAX),
     Date DATE,
+);
+CREATE TABLE UserOperationsClaims(
+    Id INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    UserId INT NOT NULL,
+    OperationClaimId INT NOT NULL,
+);
+CREATE TABLE OperationsClaims(
+    Id INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    Name VARCHAR(250) NOT NULL,
 );
