@@ -14,7 +14,7 @@ namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
-        IRentalDal _rentalDal;
+        private readonly IRentalDal _rentalDal;
 
         public RentalManager(IRentalDal rentalDal)
         {
@@ -25,9 +25,8 @@ namespace Business.Concrete
         public IResult Add(Rental rental)
         {
             if (rental.ReturnDate == null && _rentalDal.GetRentalDetails(I => I.CarId == rental.CarId).Count > 0)
-            {
                 return new ErrorResult(Messages.NoReturnDate);
-            }
+
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }

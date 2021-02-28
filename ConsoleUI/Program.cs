@@ -2,12 +2,13 @@
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
+using Core.Entities.Concrete;
 
 namespace ConsoleUI
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()//string[] args
         {
             //CarTest();
             //BrandTest();
@@ -23,7 +24,7 @@ namespace ConsoleUI
 
         }
 
-        private static void AddRentalTest()
+        private protected static void AddRentalTest()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             CarManager carManager = new CarManager(new EfCarDal());
@@ -59,20 +60,20 @@ namespace ConsoleUI
             }
         }
 
-        private static void AddCustomerTest()
+        private protected static void AddCustomerTest()
         {
             UserManager userManager = new UserManager(new EfUserDal());
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
             customerManager.Add(new Customer { UserId = userManager.GetById(1).Data.Id, CompanyName = "Deneme Adi Ortaklığı" });
         }
 
-        private static void AddUserTest()
+        private protected static void AddUserTest()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            userManager.Add(new User { FirstName = "Furkan", LastName = "Paşaoğlu", Email = "email@email.com", Password = "1234" });
+            userManager.Add(new User { FirstName = "Furkan", LastName = "Paşaoğlu", Email = "email@email.com" });
         }
 
-        private static void CarDtoTest()
+        private protected static void CarDtoTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetCarDetails();
@@ -89,26 +90,26 @@ namespace ConsoleUI
             }
         }
 
-        private static void UpdateColorTest()
+        private protected static void UpdateColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             colorManager.Update(new Color { ColorId = 1, ColorName = "Orange" });
         }
 
-        private static void DeleteColorTest()
+        private protected static void DeleteColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             colorManager.Delete(new Color { ColorId = 1002 });
         }
 
-        private static void AddColorTest()
+        private protected static void AddColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
 
             colorManager.Add(new Color { ColorName = "Purple" });
         }
 
-        private static void ColorTest()
+        private protected static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
             var result = colorManager.GetAll();
@@ -126,7 +127,7 @@ namespace ConsoleUI
 
         }
 
-        private static void BrandTest()
+        private protected static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             var result = brandManager.GetAll();
@@ -144,7 +145,7 @@ namespace ConsoleUI
 
         }
 
-        private static void CarTest()
+        private protected static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetAll();

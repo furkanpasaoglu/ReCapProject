@@ -14,7 +14,7 @@ namespace Business.Concrete
 {
     public class CarManager: ICarService
     {
-        ICarDal _carDal;
+        private readonly ICarDal _carDal;
 
         public CarManager(ICarDal carDal)
         {
@@ -73,9 +73,5 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.CarPriceInvalid);
         }
-            
-            
-            
-
     }
 }
