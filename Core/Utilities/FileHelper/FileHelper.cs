@@ -5,13 +5,15 @@ namespace Core.Utilities.FileHelper
 {
     public class FileHelper
     {
-        public static string SaveImageFile(string extension)
+        private static string _wwwRoot = "wwwroot";
+        
+        public static string SaveImageFile(string fileName,string extension)
         {
             string resimUzantisi = Path.GetExtension(extension); 
-            string yeniResimAdi = string.Format("{0}{1}", Guid.NewGuid().ToString("D"), resimUzantisi);
-            string imageKlasoru = Path.Combine("wwwroot", "Images");
+            string yeniResimAdi = string.Format("{0:D}{1}", Guid.NewGuid(), resimUzantisi);
+            string imageKlasoru = Path.Combine(_wwwRoot, fileName);
             string tamResimYolu = Path.Combine(imageKlasoru, yeniResimAdi); 
-            string webResimYolu = string.Format("/Images/{0}", yeniResimAdi);
+            string webResimYolu = string.Format("/"+ fileName + "/{0}", yeniResimAdi);
             if(!Directory.Exists(imageKlasoru))
                 Directory.CreateDirectory(imageKlasoru);
 
@@ -26,9 +28,9 @@ namespace Core.Utilities.FileHelper
         public static bool DeleteImageFile(string fileName)
         {
             string fullPath = Path.Combine(fileName);
-            if (File.Exists("wwwroot"+fullPath))
+            if (File.Exists(_wwwRoot + fullPath))
             {
-                File.Delete("wwwroot"+fullPath);
+                File.Delete(_wwwRoot + fullPath);
                 return true;
             }
             return false;

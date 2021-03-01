@@ -50,7 +50,7 @@ namespace Business.Concrete
         {
             var result = BusinessRules.Run(CheckCarImagesCount(carImage.CarId));
             if (result != null) return result;
-            carImage.ImagePath = FileHelper.SaveImageFile(extension);
+            carImage.ImagePath = FileHelper.SaveImageFile("Images",extension);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
@@ -62,7 +62,7 @@ namespace Business.Concrete
             var entity = _carImageDal.Get(ci => ci.Id == carImage.Id);
             if (entity == null) return new ErrorResult(Messages.CarImageNotFound);
             FileHelper.DeleteImageFile(entity.ImagePath);
-            entity.ImagePath = FileHelper.SaveImageFile(extension);
+            entity.ImagePath = FileHelper.SaveImageFile("Images", extension);
             entity.Date = DateTime.Now;
             _carImageDal.Update(entity);
             return new SuccessResult(Messages.CarImageUpdated);
