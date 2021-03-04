@@ -1,11 +1,11 @@
 # ReCapProject - Araç Kiralama Sistemi
-![cizimbanner2](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Yaz%C4%B1l%C4%B1m%20Geli%C5%9Ftirici%20Yeti%C5%9Ftirme%20kamp%C4%B1.png?token=AD62TVKL2AYUKI5MCRC4LYTAID6D6) 
+![cizimbanner2](https://github.com/furkanpasaoglu/githubImages/blob/main/Yaz%C4%B1l%C4%B1m%20Geli%C5%9Ftirici%20Yeti%C5%9Ftirme%20kamp%C4%B1.png) 
 
 ## :pushpin:Getting Started
-![layers](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/About.png?token=AD62TVKYTY7OB2C3Q2HYQHTAID66S)
+![layers](https://github.com/furkanpasaoglu/githubImages/blob/main/About.png)
 <br>
 ## :books:Layers  
-![entities](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Entities%20Layer.png?token=AD62TVOVAADVWQBM5GP7BDTAID6KA)
+![entities](https://github.com/furkanpasaoglu/githubImages/blob/main/Entities%20Layer.png)
 ### Entities Layer
 Veritabanı nesneleri için oluşturulmuş **Entities Katmanı**'nda **Abstract** ve **Concrete** olmak üzere iki adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur.  
 ![business](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Business%20Layer.png?token=AD62TVOWRM7X47IVPV5FRO3AID6N2)
@@ -13,7 +13,7 @@ Veritabanı nesneleri için oluşturulmuş **Entities Katmanı**'nda **Abstract*
 ###  Business Layer
 Sunum katmanından gelen bilgileri gerekli koşullara göre işlemek veya denetlemek için oluşturulan **Business Katmanı**'nda **Abstract**,**Concrete**,**Utilities** ve **ValidationRules** olmak üzere dört adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur.Utilities ve ValidationRules klasörlerinde validation işlemlerinin gerçekleştiği classlar mevcuttur.  
 <br>
-![dal](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Data%20Access%20Layer.png?token=AD62TVL5JZVXSXTRYNBIYRLAID6TE)
+![dal](https://github.com/furkanpasaoglu/githubImages/blob/main/Business%20Layer.png)
 ###  Data Access Layer
 Veritabanı CRUD işlemleri gerçekleştirmek için oluşturulan **Data Access Katmanı**'nda **Abstract** ve **Concrete** olmak üzere iki adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur.  
 <br>
@@ -25,7 +25,7 @@ Bir framework katmanı olan **Core Katmanı**'nda **DataAccess**, **Entities**, 
 > Core Katmanı, diğer katmanları referans almaz.
 
 
-![ssms](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Database%20and%20Tables.png?token=AD62TVLL5CRZOWI6UQG7XCLAID7EO)
+![database](https://github.com/furkanpasaoglu/githubImages/blob/main/Database%20and%20Tables.png)
 ###  Veritabanı Oluşturma 
 Araba Kiralama Projemiz localdb ile çalışmaktadır. **LocalDb**'de veritabanı oluşturmak için **Visual Studio 2019** için *View > SQL Server Object Explorer* menü yolunu takip edebilirsiniz.Pencere açıldıktan sonra *SQL Server > (localdb)MSSQLLocalDB* altındaki **Databases** klasörüne sağ tıklayıp Add **New Database** seçeneğini ile veritabanınızı oluşturabilirsiniz. Veritabanı oluşturulduktan sonra **New Query** seçerek aşağıda bulunan Sql File ile veritabanınızda olması gereken tabloları oluşturabilirsiniz.  
 - [SqlQuery.sql](https://github.com/furkanpasaoglu/ReCapProject/blob/master/SQLQuery.sql) *(Tablonuzu linkde gördüğünüz şekilde oluşturun)*
