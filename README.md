@@ -31,6 +31,22 @@ Araba Kiralama Projemiz localdb ile çalışmaktadır. **LocalDb**'de veritaban�
 - [SqlQuery.sql](https://github.com/furkanpasaoglu/ReCapProject/blob/master/SQLQuery.sql) *(Tablonuzu linkde gördüğünüz şekilde oluşturun)*
 <br>
 
+![prerequisites](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Prerequisites.png) 
+### Nuget
+```
+Autofac Version="6.1.0"
+Autofac.Extensions.DependencyInjection Version="7.1.0"
+Autofac.Extras.DynamicProxy Version="6.0.0"
+FluentValidation Version="9.5.1"
+Microsoft.AspNetCore.Http Version="2.2.2"
+Microsoft.AspNetCore.Http.Features Version="5.0.3"
+Microsoft.AspNetCore.Http.Abstractions Version="2.2.0"
+Microsoft.EntityFrameworkCore.SqlServer Version="3.1.1"
+Microsoft.IdentityModel.Tokens Version="6.8.0"
+System.IdentityModel.Tokens.Jwt Version="6.8.0"
+```
+
+
 ## Araba Kiralama Projesi ile ilgili Notlar
 - [SqlQuery.sql](https://github.com/furkanpasaoglu/ReCapProject/blob/master/SQLQuery.sql) *(Tablonuzu linkde gördüğünüz   şekilde oluşturun)*
 - *7.Haftadaki DataAccess katmanında bulunan Abstract kısım Generic Repository Design Pattern ile güncellendi.*
