@@ -8,12 +8,12 @@
 ![entities](https://github.com/furkanpasaoglu/githubImages/blob/main/Entities%20Layer.png)
 ### Entities Layer
 Veritabanı nesneleri için oluşturulmuş **Entities Katmanı**'nda **Abstract** ve **Concrete** olmak üzere iki adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur.  
-![business](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Business%20Layer.png?token=AD62TVOWRM7X47IVPV5FRO3AID6N2)
+![business](https://github.com/furkanpasaoglu/githubImages/blob/main/Business%20Layer.png)
 <br>
 ###  Business Layer
 Sunum katmanından gelen bilgileri gerekli koşullara göre işlemek veya denetlemek için oluşturulan **Business Katmanı**'nda **Abstract**,**Concrete**,**Utilities** ve **ValidationRules** olmak üzere dört adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur.Utilities ve ValidationRules klasörlerinde validation işlemlerinin gerçekleştiği classlar mevcuttur.  
 <br>
-![dal](https://github.com/furkanpasaoglu/githubImages/blob/main/Business%20Layer.png)
+![dal](https://github.com/furkanpasaoglu/githubImages/blob/main/Data%20Access%20Layer.png)
 ###  Data Access Layer
 Veritabanı CRUD işlemleri gerçekleştirmek için oluşturulan **Data Access Katmanı**'nda **Abstract** ve **Concrete** olmak üzere iki adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur.  
 <br>
