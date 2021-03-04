@@ -7,9 +7,13 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
+    [SecuredOperation("Customer.Admin")]
     public class CustomerManager: ICustomerService
     {
         private readonly ICustomerDal _customerDal;
@@ -20,6 +24,8 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CustomerValidator))]
+        [CacheRemoveAspect("ICustomerService.Get")]
+        [SecuredOperation("Customer.Add")]
         public IResult Add(Customer customer)
         {
             if (customer.CompanyName.Length <= 2)
@@ -31,12 +37,14 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("Customer.Delete")]
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
             return new SuccessResult(Messages.CustomerDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Customer>> GetAll()
         {
             if (DateTime.Now.Hour == 00)
@@ -46,6 +54,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomerListed);
         }
 
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<Customer> GetById(int id)
         {
             if (DateTime.Now.Hour == 00)
@@ -55,6 +65,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(b => b.UserId == id));
         }
 
+        [SecuredOperation("Customer.Update")]
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);

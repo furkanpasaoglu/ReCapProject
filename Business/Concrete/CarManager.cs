@@ -10,9 +10,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
+    [SecuredOperation("Car.Admin")]
     public class CarManager: ICarService
     {
         private readonly ICarDal _carDal;
@@ -22,21 +25,23 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        [SecuredOperation("Car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
+        [SecuredOperation("Car.Add")]
         public IResult Add(Car car) 
         {
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
 
         }
-
+        [SecuredOperation("Car.Delete")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 5)
@@ -47,6 +52,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<Car> GetById(int carId)
         {
             if (DateTime.Now.Hour == 5)
@@ -56,6 +63,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == carId));
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             if (DateTime.Now.Hour == 5)
@@ -64,7 +72,7 @@ namespace Business.Concrete
             }
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(filter));
         }
-
+        [SecuredOperation("Car.Update")]
         public IResult Update(Car car)
         {
             if (car.DailyPrice > 0)

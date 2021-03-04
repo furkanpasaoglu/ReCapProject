@@ -5,6 +5,8 @@ using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.FileHelper;
@@ -14,6 +16,7 @@ using Entities.Concrete;
 
 namespace Business.Concrete
 {
+    [SecuredOperation("Admin")]
     public class CarImageManager : ICarImageService
     {
         private readonly ICarImageDal _carImageDal;
@@ -22,11 +25,14 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
 
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<CarImage> Get(int id)
         {
             var carImage = _carImageDal.Get(ci => ci.Id == id);
@@ -44,7 +50,7 @@ namespace Business.Concrete
             });
         }
 
-        [SecuredOperation("CarImage.Add,admin")]
+        [SecuredOperation("CarImage.Add")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(string extension,CarImage carImage)
         {
@@ -57,6 +63,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
+        [SecuredOperation("CarImage.Update")]
         public IResult Update(string extension,CarImage carImage)
         {
             var entity = _carImageDal.Get(ci => ci.Id == carImage.Id);
@@ -68,6 +75,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarImageUpdated);
         }
 
+        [SecuredOperation("CarImage.Delete")]
         public IResult Delete(CarImage carImage)
         {
             var entity = _carImageDal.Get(ci => ci.Id == carImage.Id);
