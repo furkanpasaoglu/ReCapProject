@@ -1,5 +1,5 @@
 # ReCapProject - Araç Kiralama Sistemi
-![cizimbanner2](https://github.com/furkanpasaoglu/githubImages/blob/main/Yaz%C4%B1l%C4%B1m%20Geli%C5%9Ftirici%20Yeti%C5%9Ftirme%20kamp%C4%B1.png) 
+![cizimbanner2](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Yaz%C4%B1l%C4%B1m%20Geli%C5%9Ftirici%20Yeti%C5%9Ftirme%20kamp%C4%B1.png) 
 
 ## :pushpin:Getting Started
 ![layers](https://github.com/furkanpasaoglu/githubImages/blob/main/About.png)
