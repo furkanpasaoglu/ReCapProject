@@ -50,5 +50,6 @@ Araba Kiralama Projemiz localdb ile çalışmaktadır. **LocalDb**'de veritaban�
 - *15.Hafta Cache, Transaction ve Performance Entegrasyonu Yapıldı.*
 
 <br>
+
 ## :pencil2:Authors
 * **Furkan Paşaoğlu** - [furkanpasaoglu](https://github.com/furkanpasaoglu)*
