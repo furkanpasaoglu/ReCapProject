@@ -52,4 +52,4 @@ Araba Kiralama Projemiz localdb ile çalışmaktadır. **LocalDb**'de veritaban�
 <br>
 
 ## :pencil2:Authors
-* **Furkan Paşaoğlu** - [furkanpasaoglu](https://github.com/furkanpasaoglu)*
+* **Furkan Paşaoğlu** - [furkanpasaoglu](https://github.com/furkanpasaoglu)
