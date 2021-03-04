@@ -17,3 +17,4 @@ Yazılım Geliştirici Yetiştirme Kampı (Engin Demiroğ) Ödev
 - *13.Hafta Projeye Dosya Yükleme (File Helper) Sistemi Yazıldı.*
 - *14.Hafta Veritabanı Güncellendi.*
 - *14.Hafta JWT Entegrasyonu Yapıldı.*
+- *15.Hafta Cache, Transaction ve Performance Entegrasyonu Yapıldı.*
