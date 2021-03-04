@@ -16,7 +16,6 @@ using Entities.Concrete;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Admin")]
     public class CarImageManager : ICarImageService
     {
         private readonly ICarImageDal _carImageDal;

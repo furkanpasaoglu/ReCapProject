@@ -13,7 +13,6 @@ using Core.Entities.Concrete;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("User.Admin")]
     public class UserManager : IUserService
     {
         private readonly IUserDal _userDal;

@@ -13,7 +13,6 @@ using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Customer.Admin")]
     public class CustomerManager: ICustomerService
     {
         private readonly ICustomerDal _customerDal;

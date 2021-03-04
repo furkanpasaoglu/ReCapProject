@@ -15,7 +15,6 @@ using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Car.Admin")]
     public class CarManager: ICarService
     {
         private readonly ICarDal _carDal;

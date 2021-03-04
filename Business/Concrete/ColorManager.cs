@@ -13,7 +13,6 @@ using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Color.Admin")]
     public class ColorManager: IColorService
     {
         private readonly IColorDal _colorDal;

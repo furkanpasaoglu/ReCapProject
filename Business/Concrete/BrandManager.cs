@@ -13,7 +13,6 @@ using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Brand.Admin")]
     public class BrandManager: IBrandService
     {
         private readonly IBrandDal _brandDal;

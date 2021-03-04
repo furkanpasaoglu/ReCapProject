@@ -15,7 +15,6 @@ using Core.Aspects.Autofac.Performance;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Rental.Admin")]
     public class RentalManager : IRentalService
     {
         private readonly IRentalDal _rentalDal;
