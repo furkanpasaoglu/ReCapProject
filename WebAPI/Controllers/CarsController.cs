@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using System.Threading;
+using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,6 +41,8 @@ namespace WebAPI.Controllers
         [HttpGet("details")]
         public IActionResult GetCarDetails()
         {
+            Thread.Sleep(5000);
+
             var result = _carService.GetCarDetails();
             if (result.Success)
             {
