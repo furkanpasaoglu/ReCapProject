@@ -13,6 +13,7 @@ using Core.Utilities.FileHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
 {
@@ -49,13 +50,13 @@ namespace Business.Concrete
             });
         }
 
-        [SecuredOperation("CarImage.Add")]
+        //[SecuredOperation("CarImage.Add")]
         [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Add(string extension,CarImage carImage)
+        public IResult Add(IFormFile file,CarImage carImage)
         {
             var result = BusinessRules.Run(CheckCarImagesCount(carImage.CarId));
             if (result != null) return result;
-            carImage.ImagePath = FileHelper.SaveImageFile("Images",extension);
+            carImage.ImagePath = FileHelper.SaveImageFile("Images",file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
@@ -63,12 +64,12 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(CarImageValidator))]
         [SecuredOperation("CarImage.Update")]
-        public IResult Update(string extension,CarImage carImage)
+        public IResult Update(IFormFile file, CarImage carImage)
         {
             var entity = _carImageDal.Get(ci => ci.Id == carImage.Id);
             if (entity == null) return new ErrorResult(Messages.CarImageNotFound);
             FileHelper.DeleteImageFile(entity.ImagePath);
-            entity.ImagePath = FileHelper.SaveImageFile("Images", extension);
+            entity.ImagePath = FileHelper.SaveImageFile("Images", file);
             entity.Date = DateTime.Now;
             _carImageDal.Update(entity);
             return new SuccessResult(Messages.CarImageUpdated);

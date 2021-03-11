@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Core.Utilities.FileHelper
 {
@@ -7,9 +8,9 @@ namespace Core.Utilities.FileHelper
     {
         private static string _wwwRoot = "wwwroot";
         
-        public static string SaveImageFile(string fileName,string extension)
+        public static string SaveImageFile(string fileName,IFormFile extension)
         {
-            string resimUzantisi = Path.GetExtension(extension); 
+            string resimUzantisi = Path.GetExtension(extension.FileName); 
             string yeniResimAdi = string.Format("{0:D}{1}", Guid.NewGuid(), resimUzantisi);
             string imageKlasoru = Path.Combine(_wwwRoot, fileName);
             string tamResimYolu = Path.Combine(imageKlasoru, yeniResimAdi); 
@@ -19,7 +20,7 @@ namespace Core.Utilities.FileHelper
 
             using (var fileStream = File.Create(tamResimYolu))
             {
-                fileStream.CopyTo(fileStream);
+                extension.CopyTo(fileStream);
                 fileStream.Flush();
             }
             return webResimYolu;
