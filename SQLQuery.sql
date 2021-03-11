@@ -9,14 +9,12 @@ CREATE TABLE Brands(
 );
 
 CREATE TABLE Cars(
-	CarID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	BrandId INT NOT NULL,
 	ColorId INT NOT NULL,
 	ModelYear INT NOT NULL,
 	DailyPrice DECIMAL NOT NULL,
-	Descriptions NTEXT NULL,
-	FOREIGN KEY (ColorID) REFERENCES Colors(ColorID),
-	FOREIGN KEY (BrandID) REFERENCES Brands(BrandID)
+	Descriptions NTEXT NULL
 );
 
 CREATE TABLE Users(
@@ -32,8 +30,7 @@ CREATE TABLE Users(
 CREATE TABLE Customers(
     Id INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
     UserId INT UNIQUE NOT NULL,
-    CompanyName NVARCHAR (100) NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES Users(Id)
+    CompanyName NVARCHAR (100) NOT NULL
 );
 
 CREATE TABLE Rentals(
@@ -41,23 +38,21 @@ CREATE TABLE Rentals(
     CarId INT  NOT NULL,
     CustomerId INT  NOT NULL,
     RentDate DATE NOT NULL,
-    ReturnDate DATE NULL,
-    FOREIGN KEY (CarId) REFERENCES Cars(Id),
-    FOREIGN KEY (CustomerId) REFERENCES Customers(UserId)
+    ReturnDate DATE NULL
 );
 
 CREATE TABLE CarImages(
     Id INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
     CarId INT,
     ImagePath NVARCHAR(MAX),
-    Date DATE,
+    Date DATE
 );
 CREATE TABLE UserOperationsClaims(
     Id INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
     UserId INT NOT NULL,
-    OperationClaimId INT NOT NULL,
+    OperationClaimId INT NOT NULL
 );
 CREATE TABLE OperationsClaims(
     Id INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
-    Name VARCHAR(250) NOT NULL,
+    Name VARCHAR(250) NOT NULL
 );
