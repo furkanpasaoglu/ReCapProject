@@ -50,7 +50,7 @@ namespace Business.Concrete
             });
         }
 
-        //[SecuredOperation("CarImage.Add")]
+        [SecuredOperation("CarImage.Add")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file,CarImage carImage)
         {
