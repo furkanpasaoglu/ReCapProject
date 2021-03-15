@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
         [HttpGet("details")]
         public IActionResult GetCarDetails()
         {
-            Thread.Sleep(5000);
+            //Thread.Sleep(1000);
 
             var result = _carService.GetCarDetails();
             if (result.Success)
@@ -87,8 +87,7 @@ namespace WebAPI.Controllers
         [HttpGet("detailsbycolor")]
         public IActionResult GetCarsByColor(int id)
         {
-
-            var result = _carService.GetCarDetails(c => c.ColorId == id);
+            var result = _carService.GetCarsDetailByColorId(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -100,7 +99,7 @@ namespace WebAPI.Controllers
         public IActionResult GetCarsByBrand(int id)
         {
 
-            var result = _carService.GetCarDetails(b => b.BrandId == id);
+            var result = _carService.GetCarsDetailByBrandId(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -108,16 +107,27 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("detailsbymodelyear")]
-        public IActionResult GetCarByModelYear(int min, int max)
-        {
+        //[HttpGet("getbrandandcolor")]
+        //public IActionResult GetCarBrandandColor(int brandId,int colorId)
+        //{
+        //    //Thread.Sleep(5000);
+        //    var result = _carService.GetCarBrandandColor(brandId,colorId);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
 
-            var result = _carService.GetCarDetails(m => m.ModelYear >= min && m.ModelYear <= max);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        //[HttpGet("detailsbymodelyear")]
+        //public IActionResult GetCarByModelYear(int min, int max)
+        //{
+        //    var result = _carService.GetCarDetails(m => m.ModelYear >= min && m.ModelYear <= max);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
     }
 }

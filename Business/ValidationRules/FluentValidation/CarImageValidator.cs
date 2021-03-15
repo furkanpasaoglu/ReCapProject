@@ -7,9 +7,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public CarImageValidator()
         {
-            RuleFor(x => x.ImagePath).NotNull().WithMessage("Dosya alanı boş olamaz.");
-
-            
+            RuleFor(x => x.CarId).NotNull().WithMessage("Id boş olamaz.");
         }
     }
 }
