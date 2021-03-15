@@ -38,12 +38,24 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+
         [HttpGet("details")]
         public IActionResult GetCarDetails()
         {
             //Thread.Sleep(1000);
 
             var result = _carService.GetCarDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("detailsbyid")]
+        public IActionResult GetCarDetailsById(int carId)
+        {
+            var result = _carService.GetCarDetailsById(carId);
             if (result.Success)
             {
                 return Ok(result);
@@ -106,6 +118,8 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        
 
         //[HttpGet("getbrandandcolor")]
         //public IActionResult GetCarBrandandColor(int brandId,int colorId)

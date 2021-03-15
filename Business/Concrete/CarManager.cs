@@ -63,13 +63,22 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails(Expression<Func<Car,bool>> filter = null)
         {
             if (DateTime.Now.Hour == 5)
             {
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
             }
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+            return new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails());
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsById(int carId)
+        {
+            if (DateTime.Now.Hour == 5)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+            }
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailById(carId));
         }
 
         [CacheAspect]

@@ -13,6 +13,7 @@ using Core.Utilities.FileHelper;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 
 namespace Business.Concrete
@@ -20,9 +21,11 @@ namespace Business.Concrete
     public class CarImageManager : ICarImageService
     {
         private readonly ICarImageDal _carImageDal;
-        public CarImageManager(ICarImageDal carImageDal)
+        private ICarService _carService;
+        public CarImageManager(ICarImageDal carImageDal, ICarService carService)
         {
             _carImageDal = carImageDal;
+            _carService = carService;
         }
 
         [CacheAspect]
@@ -40,13 +43,13 @@ namespace Business.Concrete
             return new SuccessDataResult<CarImage>(carImage);
         }
 
-        public IDataResult<List<CarImage>> GetByCarId(int carId)
+        public IDataResult<List<CarDetailDto>> GetByCarId(int carId)
         {
-            var result = _carImageDal.GetAll(ci => ci.CarId == carId);
-            if (result.Any()) return new SuccessDataResult<List<CarImage>>(result);
-            return new SuccessDataResult<List<CarImage>>(new List<CarImage>
+            var result = _carService.GetCarDetails(ci => ci.Id == carId);
+            if (result.Data.Any()) return new SuccessDataResult<List<CarDetailDto>>(result.Data);
+            return new SuccessDataResult<List<CarDetailDto>>(new List<CarDetailDto>
             {
-                new CarImage{ ImagePath = "default.jpg", Date = DateTime.Now }
+                new CarDetailDto{ ImagePath = "default.jpg", Date = DateTime.Now }
             });
         }
 
