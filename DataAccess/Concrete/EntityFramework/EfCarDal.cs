@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (ReCapContext context = new ReCapContext())
             {
-                var result = from p in filter == null ? context.Cars : context.Cars.Where(filter)
+                var result = (from p in filter == null ? context.Cars : context.Cars.Where(filter)
                     join c in context.Colors on p.ColorId equals c.ColorId
                     join d in context.Brands on p.BrandId equals d.BrandId
                     join im in context.CarImages on p.Id equals im.CarId
@@ -30,8 +30,8 @@ namespace DataAccess.Concrete.EntityFramework
                         Date = im.Date,
                         ImagePath = im.ImagePath,
                         ImageId = im.Id
-                        };
-                return result.ToList();
+                        }).ToList();
+                return result.GroupBy(p => p.Id).Select(p => p.FirstOrDefault()).ToList();
             }
         }
 
