@@ -18,7 +18,6 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         private readonly IRentalDal _rentalDal;
-
         public RentalManager(IRentalDal rentalDal)
         {
             _rentalDal = rentalDal;
@@ -26,10 +25,10 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(RentalValidator))]
         [CacheRemoveAspect("IRentalService.Get")]
-        [SecuredOperation("Rental.Add")]
+        //[SecuredOperation("Rental.Add")]
         public IResult Add(Rental rental)
         {
-            if (rental.ReturnDate == null && _rentalDal.GetRentalDetails(I => I.CarId == rental.CarId).Count > 0)
+            if (rental.ReturnDate == null && _rentalDal.GetRentalDetailsById(rental.CarId).Count > 0)
                 return new ErrorResult(Messages.NoReturnDate);
 
             _rentalDal.Add(rental);
@@ -64,8 +63,13 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(b => b.Id == id));
         }
 
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailsById(int id)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailsById(id));
+        }
+
         [CacheAspect]
-        public IDataResult<List<RentalDetailDto>> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
+        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
             if (DateTime.Now.Hour == 00)
             {
