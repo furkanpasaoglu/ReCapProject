@@ -24,7 +24,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BrandValidator))]
         [CacheRemoveAspect("IBrandService.Get")]
-        [SecuredOperation("Brand.Add")]
+       // [SecuredOperation("Brand.Add")]
         public IResult Add(Brand brand)
         {
             if (brand.BrandName.Length <= 2)
@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.BrandAdded);
 
         }
-        [SecuredOperation("Brand.Delete")]
+        //[SecuredOperation("Brand.Delete")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
@@ -63,7 +63,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id));
         }
 
-        [SecuredOperation("Brand.Update")]
+        //[SecuredOperation("Brand.Update")]
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
