@@ -48,7 +48,9 @@ namespace DataAccess.Concrete.EntityFramework
                              where p.Id == carId
                     select new CarDetailDto
                     {
+                        BrandId = d.BrandId,
                         BrandName = d.BrandName,
+                        ColorId = c.ColorId,
                         ColorName = c.ColorName,
                         DailyPrice = p.DailyPrice,
                         Description = p.Description,
