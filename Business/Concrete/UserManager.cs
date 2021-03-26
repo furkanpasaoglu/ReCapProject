@@ -10,6 +10,8 @@ using Business.BusinessAspects.Autofac;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
 using Core.Entities.Concrete;
+using Core.Utilities.Security.Hashing;
+using Entities.Concrete;
 
 namespace Business.Concrete
 {
@@ -28,6 +30,24 @@ namespace Business.Concrete
         {
             _userDal.Add(user);
             return new SuccessResult(Messages.UserAdded);
+        }
+
+        public IResult ProfileUpdate(User user,string password)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var updatedUser = new User
+            {
+                Id = user.Id,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Status = user.Status
+            };
+            _userDal.Update(updatedUser);
+            return new SuccessDataResult<User>(Messages.UserUpdated);
         }
 
         [SecuredOperation("User.Delete")]
@@ -56,6 +76,18 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Messages.MaintenanceTime);
             }
             return new SuccessDataResult<User>(_userDal.Get(b => b.Id == id));
+        }
+
+        public IDataResult<Findeks> GetUserFindeks(Findeks findeks)
+        {
+            Random rnd = new Random();
+            var userFindeks = new Findeks
+            {
+                Tc = findeks.Tc,
+                DateYear = findeks.DateYear,
+                UserFindeks = rnd.Next(0,1900)
+            };
+            return new SuccessDataResult<Findeks>(userFindeks);
         }
 
         public IResult Update(User user)

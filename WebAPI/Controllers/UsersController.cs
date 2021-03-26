@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Core.Entities.Concrete;
+using Entities.Concrete;
+using Entities.DTOs;
 
 namespace WebAPI.Controllers
 {
@@ -37,6 +39,24 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("email")]
+        public IActionResult GetByMail(string email)
+        {
+            var result = _userService.GetByMail(email);
+            if (result.Success)
+            {
+                return Ok(new
+                {
+                    result.Data.Id,
+                    result.Data.FirstName,
+                    result.Data.LastName,
+                    result.Data.Email,
+                    result.Data.Status
+                });
+            }
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(User user)
         {
@@ -69,5 +89,30 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpPost("getuserfindeks")]
+        public IActionResult GetUserFindeks(Findeks findeks)
+        {
+            var result = _userService.GetUserFindeks(findeks);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpPost("updateprofile")]
+        public IActionResult ProfileUpdate(UserForUpdateDto userForUpdateDto)
+        {
+            var result = _userService.ProfileUpdate(userForUpdateDto.User,userForUpdateDto.Password);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
     }
 }

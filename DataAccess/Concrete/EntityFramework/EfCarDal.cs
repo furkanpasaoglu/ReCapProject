@@ -27,8 +27,8 @@ namespace DataAccess.Concrete.EntityFramework
                         ColorName = c.ColorName,
                         DailyPrice = p.DailyPrice,
                         Description = p.Description,
-                        ModelYear = p.ModelYear, 
-                        Id= p.Id,
+                        ModelYear = p.ModelYear,
+                        Id = p.Id,
                         Date = im.Date,
                         ImagePath = im.ImagePath,
                         ImageId = im.Id
