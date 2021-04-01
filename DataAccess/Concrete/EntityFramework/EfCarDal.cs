@@ -11,6 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, ReCapContext>, ICarDal
     {
+        private Random _random = new Random();
         public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             using (ReCapContext context = new ReCapContext())
@@ -29,6 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                         Description = p.Description,
                         ModelYear = p.ModelYear,
                         Id = p.Id,
+                        FindeksScore = _random.Next(1, 1900),
                         Date = im.Date,
                         ImagePath = im.ImagePath,
                         ImageId = im.Id
@@ -41,6 +43,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (ReCapContext context = new ReCapContext())
             {
+                
                 var result = from p in context.Cars 
                     join c in context.Colors on p.ColorId equals c.ColorId
                     join d in context.Brands on p.BrandId equals d.BrandId
@@ -56,6 +59,7 @@ namespace DataAccess.Concrete.EntityFramework
                         Description = p.Description,
                         ModelYear = p.ModelYear,
                         Id = p.Id,
+                        FindeksScore = _random.Next(1,1900),
                         Date = im.Date,
                         ImagePath = im.ImagePath,
                         ImageId = im.Id

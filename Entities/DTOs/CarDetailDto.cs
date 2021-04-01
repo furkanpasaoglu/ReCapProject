@@ -19,5 +19,9 @@ namespace Entities.DTOs
         public int ImageId { get; set; }
         public string ImagePath { get; set; }
         public DateTime Date { get; set; }
+
+        //Findeks
+
+        public int FindeksScore { get; set; }
     }
 }
