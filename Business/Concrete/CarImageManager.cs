@@ -34,7 +34,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
 
-        [CacheAspect]
         [PerformanceAspect(5)]
         public IDataResult<CarImage> Get(int id)
         {
@@ -53,20 +52,33 @@ namespace Business.Concrete
             });
         }
 
-       // [SecuredOperation("CarImage.Add")]
+        [SecuredOperation("CarImage.Add")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file,CarImage carImage)
         {
             var result = BusinessRules.Run(CheckCarImagesCount(carImage.CarId));
             if (result != null) return result;
-            carImage.ImagePath = FileHelper.SaveImageFile("Images",file);
-            carImage.Date = DateTime.Now;
-            _carImageDal.Add(carImage);
+            var query = this.Get(carImage.CarId).Data;
+            if (query.ImagePath.Contains("default"))
+            {
+                carImage.ImagePath = FileHelper.SaveImageFile("Images", file);
+                carImage.Date = DateTime.Now;
+                carImage.Id = query.Id;
+                carImage.CarId = carImage.CarId;
+                _carImageDal.Update(carImage);
+            }
+            else
+            {
+                carImage.ImagePath = FileHelper.SaveImageFile("Images", file);
+                carImage.Date = DateTime.Now;
+                _carImageDal.Add(carImage);
+            }
+            
             return new SuccessResult(Messages.CarImageAdded);
         }
 
-        [ValidationAspect(typeof(CarImageValidator))]
         [SecuredOperation("CarImage.Update")]
+        [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
         {
             var entity = _carImageDal.Get(ci => ci.Id == carImage.Id);

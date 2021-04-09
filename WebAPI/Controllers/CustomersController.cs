@@ -27,6 +27,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("totalcustomers")]
+        public IActionResult GetTotalCustomers()
+        {
+            var result = _customerService.GetTotalCustomers();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("id")]
         public IActionResult GetById(int id)
         {

@@ -58,5 +58,14 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+        public int TotalRentedCar()
+        {//Toplam Kiralanan Araç
+            using (ReCapContext context = new ReCapContext())
+            {
+                var result = context.Brands.Count();
+                return result;
+            }
+        }
     }
 }

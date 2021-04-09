@@ -10,8 +10,8 @@ namespace WebAPI.Controllers
     [ApiController]
     public class RentalsController : ControllerBase
     {
-        IRentalService _rentalService;
-        private IPaymentService _paymentService;
+        private readonly IRentalService _rentalService;
+        private readonly IPaymentService _paymentService;
         public RentalsController(IRentalService rentalService, IPaymentService paymentService)
         {
             _rentalService = rentalService;
@@ -33,6 +33,17 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _rentalService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("totalrentedcar")]
+        public IActionResult GetTotalRentedCar()
+        {
+            var result = _rentalService.TotalRentedCar();
             if (result.Success)
             {
                 return Ok(result);

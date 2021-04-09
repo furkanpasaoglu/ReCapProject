@@ -9,7 +9,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        ICarService _carService;
+        private readonly ICarService _carService;
 
         public CarsController(ICarService carService)
         {
@@ -42,9 +42,29 @@ namespace WebAPI.Controllers
         [HttpGet("details")]
         public IActionResult GetCarDetails()
         {
-            //Thread.Sleep(1000);
-
             var result = _carService.GetCarDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("totalcars")]
+        public IActionResult GetTotalCars()
+        {
+            var result = _carService.TotalCars();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("lastrentedcar")]
+        public IActionResult GetLastRentedCar()
+        {
+            var result = _carService.LastRentedCar();
             if (result.Success)
             {
                 return Ok(result);

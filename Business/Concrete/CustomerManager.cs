@@ -64,6 +64,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(b => b.UserId == id));
         }
 
+        public IDataResult<int> GetTotalCustomers()
+        {
+            return new SuccessDataResult<int>(_customerDal.TotalCustomers());
+        }
+
         [SecuredOperation("Customer.Update")]
         public IResult Update(Customer customer)
         {

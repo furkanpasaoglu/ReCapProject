@@ -57,6 +57,31 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public CarDetailDto LastAddedCar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int TotalCars()
+        {
+            throw new NotImplementedException();
+        }
+
+        public CarDetailDto LastRentedCar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public CarDetailDto LeastRentedCar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public CarDetailDto MostRentedCar()
+        {
+            throw new NotImplementedException();
+        }
+
         public CarDetailDto GetCarDetail(int carId)
         {
             throw new NotImplementedException();

@@ -78,6 +78,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
         }
 
+        [CacheAspect]
+        public IDataResult<int> TotalRentedCar()
+        {
+            return new SuccessDataResult<int>(_rentalDal.TotalRentedCar());
+        }
+
         [SecuredOperation("Rental.Update")]
         public IResult Update(Rental rental)
         {
