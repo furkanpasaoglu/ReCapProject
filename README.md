@@ -66,7 +66,6 @@ System.IdentityModel.Tokens.Jwt Version="6.8.0"
 - *14.Hafta Veritabanı Güncellendi.*
 - *14.Hafta JWT Entegrasyonu Yapıldı.*
 - *15.Hafta Cache, Transaction ve Performance Entegrasyonu Yapıldı.*
-- 
 <br>
 
 ## :pencil2:Authors
